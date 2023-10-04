@@ -1,14 +1,97 @@
 package com.example.health_app;
 
+import android.app.DatePickerDialog;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.DatePicker;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import com.example.health_app.R;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.Locale;
 
 public class User_deatils extends AppCompatActivity {
+
+    private TextInputLayout textInputLayoutDOB;
+    TextInputLayout namelayout,agelay,addlay,doclay,contlay,heilay,bplay,oxylay,weilay;
+    TextInputEditText name,Age,address,doctor,contact,height,weight,bp,oxygen;
+    RadioGroup gender;
+    RadioButton male,female;
+
+    private TextInputEditText textInputEditTextDOB;
+    private Calendar calendar;
+    private SimpleDateFormat dateFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_deatils);
+
+        namelayout=findViewById(R.id.namelayout);
+        name=findViewById(R.id.name);
+        Age=findViewById(R.id.age);
+        agelay=findViewById(R.id.agelayout);
+        gender=findViewById(R.id.radioGroupGender);
+        male=findViewById(R.id.radioButtonMale);
+        female=findViewById(R.id.radioButtonFemale);
+        address=findViewById(R.id.address);
+        addlay=findViewById(R.id.addresslayout);
+        contact=findViewById(R.id.contact);
+        contlay=findViewById(R.id.contactlayout);
+        height=findViewById(R.id.height);
+        heilay=findViewById(R.id.heightlayout);
+        doctor=findViewById(R.id.doctorname);
+        doclay=findViewById(R.id.doctorlayout);
+        weight=findViewById(R.id.weight);
+        weilay=findViewById(R.id.weightlayout);
+        bp=findViewById(R.id.bp);
+        bplay=findViewById(R.id.bplayout);
+        oxylay=findViewById(R.id.oxygens);
+        oxygen=findViewById(R.id.oxygenlayout);
+        textInputEditTextDOB = findViewById(R.id.textInputEditTextDOB);
+        textInputLayoutDOB=findViewById(R.id.textInputLayoutDOB);
+
+
+        calendar = Calendar.getInstance();
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+
+        textInputLayoutDOB.setStartIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
+    }
+
+    private void showDatePickerDialog() {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, month);
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                String formattedDate = dateFormat.format(calendar.getTime());
+                textInputEditTextDOB.setText(formattedDate);
+            }
+        };
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                dateSetListener,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+        );
+
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis()); // Optional: Set a max date
+        datePickerDialog.show();
     }
 }
