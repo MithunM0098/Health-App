@@ -1,6 +1,7 @@
 package com.example.health_app;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Bundle;
@@ -92,8 +93,8 @@ public class User_deatils extends AppCompatActivity {
                                           }
 
 
-
-
+                                          Intent i=new Intent(User_deatils.this,DashBoard.class);
+                                          startActivity(i);
                                       }
         });
     }
