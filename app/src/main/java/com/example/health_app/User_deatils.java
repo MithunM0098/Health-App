@@ -5,9 +5,11 @@ import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,16 +26,17 @@ public class User_deatils extends AppCompatActivity {
     TextInputEditText name,Age,address,doctor,contact,height,weight,bp,oxygen;
     RadioGroup gender;
     RadioButton male,female;
-
+    Button submit;
     private TextInputEditText textInputEditTextDOB;
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
-
+    MyUserDeatilsDB db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_deatils);
 
+        db=new MyUserDeatilsDB(getApplicationContext());
         namelayout=findViewById(R.id.namelayout);
         name=findViewById(R.id.name);
         Age=findViewById(R.id.age);
@@ -57,6 +60,7 @@ public class User_deatils extends AppCompatActivity {
         oxygen=findViewById(R.id.oxygenlayout);
         textInputEditTextDOB = findViewById(R.id.textInputEditTextDOB);
         textInputLayoutDOB=findViewById(R.id.textInputLayoutDOB);
+        submit=findViewById(R.id.submit);
 
 
         calendar = Calendar.getInstance();
@@ -68,7 +72,32 @@ public class User_deatils extends AppCompatActivity {
                 showDatePickerDialog();
             }
         });
+
+        submit.setOnClickListener(new View.OnClickListener() {
+                                      @Override
+                                      public void onClick(View view) {
+                                          int selectedRadioButtonId = gender.getCheckedRadioButtonId();
+
+                                          if (selectedRadioButtonId != -1) {
+                                              RadioButton selectedRadioButton = findViewById(selectedRadioButtonId);
+
+                                              // Get the data associated with the selected radio button
+                                              String selectedData = selectedRadioButton.getText().toString();
+
+                                              // Do something with the selected data (e.g., display it or use it in further processing)
+                                             // Toast.makeText(getApplicationContext(), "Selected Data: " + selectedData, Toast.LENGTH_SHORT).show();
+                                              db.addDetails(name.getText().toString().trim(), Integer.parseInt(Age.getText().toString().trim()),textInputEditTextDOB.getText().toString().trim(),selectedData,address.getText().toString().trim(),
+                                                      contact.getText().toString().trim(),doctor.getText().toString().trim(),height.getText().toString().trim(),weight.getText().toString().trim(),
+                                                      oxygen.getText().toString().trim(),bp.getText().toString().trim());
+                                          }
+
+
+
+
+                                      }
+        });
     }
+
 
     private void showDatePickerDialog() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
