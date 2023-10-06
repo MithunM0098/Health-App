@@ -8,15 +8,15 @@
         android:icon="@drawable/ic_baseline_home_24"
         android:title="Home" />
     <item
-        android:id="@+id/nav_message"
+        android:id="@+id/nav_edit"
         android:icon="@drawable/persons"
         android:title="Edit Profile" />
     <item
-        android:id="@+id/synch"
+        android:id="@+id/symptoms"
         android:icon="@drawable/img"
         android:title="My Symptoms" />
     <item
-        android:id="@+id/trash"
+        android:id="@+id/logout"
         android:icon="@drawable/ic_baseline_logout_24"
         android:title="Logout" />
 

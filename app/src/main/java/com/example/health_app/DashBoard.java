@@ -41,11 +41,11 @@ public class DashBoard extends AppCompatActivity {
 
                     case R.id.nav_home:
                         Toast.makeText(DashBoard.this, "Home is Clicked", Toast.LENGTH_SHORT).show();break;
-                    case R.id.nav_message:
+                    case R.id.nav_edit:
                         Toast.makeText(DashBoard.this, "Message is Clicked",Toast.LENGTH_SHORT).show();break;
-                    case R.id.synch:
+                    case R.id.symptoms:
                         Toast.makeText(DashBoard.this, "Synch is Clicked",Toast.LENGTH_SHORT).show();break;
-                    case R.id.trash:
+                    case R.id.logout:
                         Toast.makeText(DashBoard.this, "Trash is Clicked",Toast.LENGTH_SHORT).show();break;
 
                     default:
