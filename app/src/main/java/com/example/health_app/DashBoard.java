@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,9 +41,13 @@ public class DashBoard extends AppCompatActivity {
                 {
 
                     case R.id.nav_home:
-                        Toast.makeText(DashBoard.this, "Home is Clicked", Toast.LENGTH_SHORT).show();break;
+                        Intent i1=new Intent(DashBoard.this,DashBoard.class);
+                        startActivity(i1);
+                        break;
                     case R.id.nav_edit:
-                        Toast.makeText(DashBoard.this, "Message is Clicked",Toast.LENGTH_SHORT).show();break;
+                        Intent i=new Intent(DashBoard.this,Edit_profile.class);
+                        startActivity(i);
+                        break;
                     case R.id.symptoms:
                         Toast.makeText(DashBoard.this, "Synch is Clicked",Toast.LENGTH_SHORT).show();break;
                     case R.id.logout:

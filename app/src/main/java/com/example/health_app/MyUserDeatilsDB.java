@@ -95,4 +95,27 @@ public class MyUserDeatilsDB extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
     }
+
+    public void UpdateData(String id,String name,int age,String dob,String gender,String address,String contact,String dr_name){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues cv=new ContentValues();
+        cv.put(COLUMN_ID,id);
+        cv.put(COLUMN_NAME,name);
+        cv.put(COLUMN_AGE,age);
+        cv.put(COLUMN_DOB,dob);
+        cv.put(COLUMN_GENDER,gender);
+        cv.put(COLUMN_ADDRESS,address);
+        cv.put(COLUMN_CONTACT,contact);
+        cv.put(COLUMN_DR_NAME,dr_name);
+       /* cv.put(COLUMN_HEIGHT,height);
+        cv.put(COLUMN_WEIGHT,weight);
+        cv.put(COLUMN_OXYGEN,oxygen);
+        cv.put(COLUMN_BP,bp);*/
+        long result= db.update(TABLE_NAME,cv,COLUMN_ID + "=?",new String[] {id});
+        if(result==-1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context," Updated Successfully!",Toast.LENGTH_SHORT).show();
+        }
+    }
 }
