@@ -13,13 +13,6 @@
         android:theme="@style/Theme.HealthApp"
         tools:targetApi="31" >
         <activity
-            android:name=".Health_categories"
-            android:exported="false" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".DashBoard"
             android:exported="false">
             <meta-data

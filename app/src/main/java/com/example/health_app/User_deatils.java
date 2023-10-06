@@ -1,7 +1,9 @@
 package com.example.health_app;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Bundle;
@@ -28,6 +30,8 @@ public class User_deatils extends AppCompatActivity {
     RadioGroup gender;
     RadioButton male,female;
     Button submit;
+    static int count=0;
+    private SharedPreferences sharedPreferences;
     private TextInputEditText textInputEditTextDOB;
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
@@ -86,17 +90,32 @@ public class User_deatils extends AppCompatActivity {
                                               String selectedData = selectedRadioButton.getText().toString();
 
                                               // Do something with the selected data (e.g., display it or use it in further processing)
-                                             // Toast.makeText(getApplicationContext(), "Selected Data: " + selectedData, Toast.LENGTH_SHORT).show();
+                                              // Toast.makeText(getApplicationContext(), "Selected Data: " + selectedData, Toast.LENGTH_SHORT).show();
+                                              db.deleteAllData();
                                               db.addDetails(name.getText().toString().trim(), Integer.parseInt(Age.getText().toString().trim()),textInputEditTextDOB.getText().toString().trim(),selectedData,address.getText().toString().trim(),
                                                       contact.getText().toString().trim(),doctor.getText().toString().trim(),height.getText().toString().trim(),weight.getText().toString().trim(),
                                                       oxygen.getText().toString().trim(),bp.getText().toString().trim());
                                           }
 
 
+                                          sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+                                          count = sharedPreferences.getInt("count", 0);
+                                          count=count+1;
+                                          SharedPreferences.Editor editor = sharedPreferences.edit();
+                                          editor.putInt("count", count);
+                                          editor.apply();
+                                          System.out.println("count is"+ count);
+                                          // In DashBoard activity
+                                          Intent intent = new Intent();
+                                          intent.putExtra("countValue", count);
+                                          setResult(RESULT_OK, intent);
+                                          finish();
+
                                           Intent i=new Intent(User_deatils.this,DashBoard.class);
                                           startActivity(i);
                                       }
         });
+
     }
 
 
