@@ -118,4 +118,20 @@ public class MyUserDeatilsDB extends SQLiteOpenHelper {
             Toast.makeText(context," Updated Successfully!",Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void UpdateData2(String id,String height,String weight,String oxygen,String bp){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues cv=new ContentValues();
+        cv.put(COLUMN_ID,id);
+        cv.put(COLUMN_HEIGHT,height);
+        cv.put(COLUMN_WEIGHT,weight);
+        cv.put(COLUMN_OXYGEN,oxygen);
+        cv.put(COLUMN_BP,bp);
+        long result= db.update(TABLE_NAME,cv,COLUMN_ID + "=?",new String[] {id});
+        if(result==-1){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context," Updated Successfully!",Toast.LENGTH_SHORT).show();
+        }
+    }
 }
