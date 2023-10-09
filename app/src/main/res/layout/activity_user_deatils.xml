@@ -17,21 +17,39 @@
         android:orientation="vertical">
 
     <!-- User Profile Image (You can use ImageView) -->
-    <ImageView
-        android:id="@+id/imageViewProfile"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:src="@drawable/user"
-        android:layout_gravity="center"
-        android:scaleType="centerCrop"
-        android:layout_marginBottom="16dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageViewProfile"
+            android:visibility="gone"
+            app:shapeAppearanceOverlay="@style/circular"
+            android:layout_width="109dp"
+            android:layout_height="107dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:contentDescription="Profile Picture"
+            android:scaleType="centerCrop"
+            android:src="@drawable/user" />
+
+
+        <ImageView
+            android:id="@+id/cameraIcon1"
+            android:layout_width="32dp"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="32dp"
+            android:layout_centerInParent="true"
+            android:contentDescription="Camera Icon"
+            android:src="@drawable/camera_icon" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/namelayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name"
+            android:hint="Name*"
             android:layout_margin="6dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:startIconDrawable="@drawable/baseline_person_24"> <!-- Use your XML drawable here -->
@@ -47,7 +65,7 @@
             android:id="@+id/agelayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Age"
+            android:hint="Age*"
             android:layout_margin="6dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:startIconDrawable="@drawable/woman"> <!-- Use your XML drawable here -->
@@ -62,7 +80,7 @@
             android:id="@+id/textInputLayoutDOB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date of Birth"
+            android:hint="Date of Birth*"
             android:layout_margin="6dp"
             android:focusable="false"
             android:clickable="true"
@@ -113,7 +131,7 @@
             android:id="@+id/addresslayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Address"
+            android:hint="Address*"
             android:layout_margin="6dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:startIconDrawable="@drawable/baseline_home_24"> <!-- Use your XML drawable here -->
@@ -128,7 +146,7 @@
             android:id="@+id/contactlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Contact"
+            android:hint="Contact*"
             android:layout_margin="6dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:startIconDrawable="@drawable/baseline_phone_24"> <!-- Use your XML drawable here -->

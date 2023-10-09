@@ -96,6 +96,10 @@ public class User_deatils extends AppCompatActivity {
                                                       contact.getText().toString().trim(),doctor.getText().toString().trim(),height.getText().toString().trim(),weight.getText().toString().trim(),
                                                       oxygen.getText().toString().trim(),bp.getText().toString().trim());
                                           }
+                                          if (name == null || Age == null || textInputEditTextDOB == null || address == null || contact == null) {
+                                              Toast.makeText(User_deatils.this, "Please fill the required fields", Toast.LENGTH_SHORT).show();
+                                          }
+
 
 
                                           sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);

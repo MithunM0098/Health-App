@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".CameraActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilepic"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/user" />
-    
+
+    <ImageView
+        android:id="@+id/cameraIcon"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignBottom="@id/profilepic"
+        android:layout_alignEnd="@id/profilepic"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/camera_icon"/>  <!-- Add a camera icon drawable -->
+
+
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
