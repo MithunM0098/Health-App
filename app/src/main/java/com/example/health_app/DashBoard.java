@@ -68,6 +68,7 @@ public class DashBoard extends AppCompatActivity {
         // Load profile picture if it exists
         loadProfilePicture();
     }
+
     private void showProfilePictureChangeDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Change Profile Picture");
@@ -134,6 +135,7 @@ public class DashBoard extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
+
     private void initializeViews() {
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -167,34 +169,9 @@ public class DashBoard extends AppCompatActivity {
     }
 
     private void loadProfilePicture() {
+
         File profileImageFile = new File(getFilesDir(), "profile_image.jpg");
 
-                int id = item.getItemId();
-                drawerLayout.closeDrawer(GravityCompat.START);
-                switch (id)
-                {
-
-                    case R.id.nav_home:
-                        Intent i1=new Intent(DashBoard.this,DashBoard.class);
-                        startActivity(i1);
-                        break;
-                    case R.id.nav_edit:
-                        Intent i=new Intent(DashBoard.this,Edit_profile.class);
-                        startActivity(i);
-                        break;
-                    case R.id.symptoms:
-                        Toast.makeText(DashBoard.this, "Symptoms is Clicked",Toast.LENGTH_SHORT).show();break;
-                    case R.id.logout:
-                        Intent i2=new Intent(DashBoard.this,MainActivity.class);
-                        startActivity(i2);
-                        break;
-                    default:
-                        return true;
-
-                }
-                return true;
-            }
-        });
         if (profileImageFile.exists()) {
             // Load the image and set it to the ImageView
             Bitmap bitmap = BitmapFactory.decodeFile(profileImageFile.getAbsolutePath());
@@ -202,26 +179,58 @@ public class DashBoard extends AppCompatActivity {
         }
     }
 
-    // Rest of your code...
+    /*int id = item.getItemId();
+    drawerLayout.closeDrawer(GravityCompat.START);
+    switch (id)
+    {
 
-    // Handle navigation item selection
+        case R.id.nav_home:
+            Intent i1=new Intent(DashBoard.this,DashBoard.class);
+            startActivity(i1);
+            break;
+        case R.id.nav_edit:
+            Intent i=new Intent(DashBoard.this,Edit_profile.class);
+            startActivity(i);
+            break;
+        case R.id.symptoms:
+            Toast.makeText(DashBoard.this, "Symptoms is Clicked",Toast.LENGTH_SHORT).show();break;
+        case R.id.logout:
+            Intent i2=new Intent(DashBoard.this,MainActivity.class);
+            startActivity(i2);
+            break;
+        default:
+            return true;
+
+    }
+    return true;
+}
+});*/
     private void handleNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_home:
-                Toast.makeText(this, "Home is Clicked", Toast.LENGTH_SHORT).show();
+                Intent i1 = new Intent(DashBoard.this, DashBoard.class);
+                startActivity(i1);
                 break;
             case R.id.nav_edit:
-                Toast.makeText(this, "Edit Profile is Clicked", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(DashBoard.this, Edit_profile.class);
+                startActivity(i);
                 break;
             case R.id.symptoms:
-                Toast.makeText(this, "Symptoms is Clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DashBoard.this, "Symptoms is Clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.logout:
-                Toast.makeText(this, "Logout is Clicked", Toast.LENGTH_SHORT).show();
+                Intent i2 = new Intent(DashBoard.this, MainActivity.class);
+                startActivity(i2);
                 break;
         }
     }
+}
 
     // Rest of your code...
-}
+
+    // Handle navigation item selection
+
+
+    // Rest of your code...
+
