@@ -81,41 +81,86 @@ public class User_deatils extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View view) {
-                                          int selectedRadioButtonId = gender.getCheckedRadioButtonId();
+                                          if (validateInputs()) {
+                                              int selectedRadioButtonId = gender.getCheckedRadioButtonId();
 
-                                          if (selectedRadioButtonId != -1) {
-                                              RadioButton selectedRadioButton = findViewById(selectedRadioButtonId);
+                                              if (selectedRadioButtonId != -1) {
+                                                  RadioButton selectedRadioButton = findViewById(selectedRadioButtonId);
 
-                                              // Get the data associated with the selected radio button
-                                              String selectedData = selectedRadioButton.getText().toString();
+                                                  // Get the data associated with the selected radio button
+                                                  String selectedData = selectedRadioButton.getText().toString();
 
-                                              // Do something with the selected data (e.g., display it or use it in further processing)
-                                              // Toast.makeText(getApplicationContext(), "Selected Data: " + selectedData, Toast.LENGTH_SHORT).show();
-                                              db.deleteAllData();
-                                              db.addDetails(name.getText().toString().trim(), Integer.parseInt(Age.getText().toString().trim()),textInputEditTextDOB.getText().toString().trim(),selectedData,address.getText().toString().trim(),
-                                                      contact.getText().toString().trim(),doctor.getText().toString().trim(),height.getText().toString().trim(),weight.getText().toString().trim(),
-                                                      oxygen.getText().toString().trim(),bp.getText().toString().trim());
+                                                  // Do something with the selected data (e.g., display it or use it in further processing)
+                                                  // Toast.makeText(getApplicationContext(), "Selected Data: " + selectedData, Toast.LENGTH_SHORT).show();
+                                                  db.deleteAllData();
+                                                  db.addDetails(name.getText().toString().trim(), Integer.parseInt(Age.getText().toString().trim()), textInputEditTextDOB.getText().toString().trim(), selectedData, address.getText().toString().trim(),
+                                                          contact.getText().toString().trim(), doctor.getText().toString().trim(), height.getText().toString().trim(), weight.getText().toString().trim(),
+                                                          oxygen.getText().toString().trim(), bp.getText().toString().trim());
+                                              }
+
+
+                                              sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+                                              count = sharedPreferences.getInt("count", 0);
+                                              count = count + 1;
+                                              SharedPreferences.Editor editor = sharedPreferences.edit();
+                                              editor.putInt("count", count);
+                                              editor.apply();
+                                              System.out.println("count is" + count);
+                                              // In DashBoard activity
+                                              Intent intent = new Intent();
+                                              intent.putExtra("countValue", count);
+                                              setResult(RESULT_OK, intent);
+                                              finish();
+
+                                              Intent i = new Intent(User_deatils.this, DashBoard.class);
+                                              startActivity(i);
                                           }
-
-
-                                          sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
-                                          count = sharedPreferences.getInt("count", 0);
-                                          count=count+1;
-                                          SharedPreferences.Editor editor = sharedPreferences.edit();
-                                          editor.putInt("count", count);
-                                          editor.apply();
-                                          System.out.println("count is"+ count);
-                                          // In DashBoard activity
-                                          Intent intent = new Intent();
-                                          intent.putExtra("countValue", count);
-                                          setResult(RESULT_OK, intent);
-                                          finish();
-
-                                          Intent i=new Intent(User_deatils.this,DashBoard.class);
-                                          startActivity(i);
                                       }
         });
 
+    }
+
+    private boolean validateInputs() {
+        // Validate name
+        if (name.getText().toString().trim().isEmpty()) {
+            name.setError("Name cannot be empty");
+            return false;
+        }
+
+        // Validate age
+        if (Age.getText().toString().trim().isEmpty()) {
+            Age.setError("Age cannot be empty");
+            return false;
+        }
+
+        // Validate Date of Birth
+        if (textInputEditTextDOB.getText().toString().trim().isEmpty()) {
+            textInputEditTextDOB.setError("Date of Birth cannot be empty");
+            return false;
+        }
+
+        // Validate gender
+        if (gender.getCheckedRadioButtonId() == -1) {
+            textInputEditTextDOB.setError("Please select gender");
+            return false;
+        }
+
+        // Add similar checks for other fields as needed
+        if(address.getText().toString().isEmpty()){
+            address.setError("Address cannot be empty");
+            return false;
+        }
+        if(contact.getText().toString().isEmpty()){
+            contact.setError("mobile number cannot be empty");
+            return false;
+        } else if(contact.getText().toString().trim().length()<10){
+            contact.setError("mobile number too short");
+            return false;
+        }else if(contact.getText().toString().trim().length()>10){
+            contact.setError("mobile number too large");
+            return false;
+        }
+        return true;
     }
 
 
