@@ -47,17 +47,23 @@ public class DashBoard extends AppCompatActivity {
     private static final int CAMERA_REQUEST = 1003;
     private ImageView profilePictureImageView, camera;
     private DrawerLayout drawerLayout;
+    ImageView respiratory,medications,vitals,symptoms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
+        respiratory=findViewById(R.id.respiratory);
+        symptoms=findViewById(R.id.symptomimg);
+        medications=findViewById(R.id.medicines);
+        vitals=findViewById(R.id.vitals);
 
         // Initialize views
         initializeViews();
 
         // Setup toolbar and navigation drawer
         setupToolbarAndNavigationDrawer();
+
         profilePictureImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +73,20 @@ public class DashBoard extends AppCompatActivity {
         });
         // Load profile picture if it exists
         loadProfilePicture();
+        vitals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+Intent vital =new Intent(DashBoard.this,vitals.class);
+startActivity(vital);
+            }
+        });
+
+        symptoms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent symp=new Intent(DashBoard.this,symptoms.class);
+            }
+        });
     }
 
     private void showProfilePictureChangeDialog() {

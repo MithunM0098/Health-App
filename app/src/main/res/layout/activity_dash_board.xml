@@ -121,6 +121,7 @@
                         android:elevation="8dp">
 
                         <ImageView
+                            android:id="@+id/medicines"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_gravity="center"
@@ -185,7 +186,7 @@
                         android:elevation="8dp">
 
                         <ImageView
-                            android:id="@+id/grid_item_dashboard_imageView_icon"
+                            android:id="@+id/vitals"
                             android:layout_width="140dp"
                             android:layout_height="150dp"
                             android:layout_gravity="center"
@@ -197,12 +198,12 @@
                             android:src="@drawable/vital" />
 
                         <FrameLayout
-                            android:id="@+id/search_asset"
+                            android:id="@+id/vital"
                             android:layout_width="160dp"
                             android:layout_height="160dp"
                             android:layout_gravity="center"
                             android:background="@drawable/circle_shape_dark"
-                            android:onClick="vitals"
+
                             android:visibility="visible" />
 
                     </FrameLayout>
@@ -240,6 +241,7 @@
                         android:elevation="8dp">
 
                         <ImageView
+                            android:id="@+id/symptomimg"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_gravity="center"
@@ -251,10 +253,11 @@
                             android:src="@drawable/fever" />
 
                         <FrameLayout
+
                             android:layout_width="160dp"
                             android:layout_height="160dp"
                             android:layout_gravity="center"
-                            android:id="@+id/button"
+                            android:id="@+id/symptom"
                             android:background="@drawable/circle_shape_dark"
                             android:onClick="symptoms"
                             android:visibility="visible" />
