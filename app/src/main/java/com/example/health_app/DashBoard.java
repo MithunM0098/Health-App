@@ -76,8 +76,8 @@ public class DashBoard extends AppCompatActivity {
         vitals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-Intent vital =new Intent(DashBoard.this,vitals.class);
-startActivity(vital);
+            Intent vital =new Intent(DashBoard.this,vitals.class);
+            startActivity(vital);
             }
         });
 

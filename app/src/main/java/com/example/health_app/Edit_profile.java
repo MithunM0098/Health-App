@@ -1,6 +1,9 @@
 package com.example.health_app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -11,6 +14,7 @@ import android.database.Cursor;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -18,6 +22,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -30,6 +36,7 @@ public class Edit_profile extends AppCompatActivity {
     RadioGroup gender;
     RadioButton male,female;
     Button submit;
+    private DrawerLayout drawerLayout;
     private TextInputEditText textInputEditTextDOB;
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
@@ -39,7 +46,7 @@ public class Edit_profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-
+        drawerLayout = findViewById(R.id.drawer_layout);
         db=new MyUserDeatilsDB(getApplicationContext());
         namelayout=findViewById(R.id.namelayout);
         name=findViewById(R.id.name);
@@ -71,7 +78,7 @@ public class Edit_profile extends AppCompatActivity {
         });
 
         getUserData();
-
+        setupToolbarAndNavigationDrawer();
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +106,28 @@ public class Edit_profile extends AppCompatActivity {
             }
         });
     }
+    private void setupToolbarAndNavigationDrawer() {
+        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
 
+        // Set up navigation drawer icon click listener
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+
+        // Set up navigation item click listener
+        NavigationView navigationView = findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                handleNavigationItemSelected(item);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
+    }
     private void showDatePickerDialog() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -144,6 +172,27 @@ public class Edit_profile extends AppCompatActivity {
                 contact.setText(cursor.getString(6));
                 doctor.setText(cursor.getString(7));
             }
+        }
+    }
+
+    private void handleNavigationItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.nav_home:
+                Intent i1 = new Intent(Edit_profile.this, DashBoard.class);
+                startActivity(i1);
+                break;
+            case R.id.nav_edit:
+                Intent i = new Intent(Edit_profile.this, Edit_profile.class);
+                startActivity(i);
+                break;
+            case R.id.symptoms:
+                Toast.makeText(Edit_profile.this, "Symptoms is Clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.logout:
+                Intent i2 = new Intent(Edit_profile.this, MainActivity.class);
+                startActivity(i2);
+                break;
         }
     }
 }
