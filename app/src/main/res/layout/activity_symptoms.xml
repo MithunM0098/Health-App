@@ -1,9 +1,603 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".symptoms">
+    android:background="@color/white"
+    tools:context=".symptoms" >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="Add Symptoms"
+                app:navigationIcon="@drawable/ic_baseline_menu_24"
+                />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".Health_categories"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:layout_marginTop="100dp">
+            <LinearLayout
+                android:id="@+id/grid_item1"
+                android:layout_width="380dp"
+                android:layout_height="180dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="180dp"
+                    android:layout_weight="1"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+
+
+
+
+                    <FrameLayout
+                        android:id="@+id/grid_item_dashboard_frameLayout_tops1"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/home_ripple_bg"
+                        android:elevation="8dp">
+
+                        <ImageView
+                            android:id="@+id/blocked_nose"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:longClickable="false"
+                            android:padding="15dp"
+                            android:src="@drawable/blockednose" />
+
+                        <FrameLayout
+                            android:id="@+id/blocked_nose1"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/circle_shape_dark"
+                            android:visibility="visible" />
+
+                    </FrameLayout>
+
+
+
+                        <CheckBox
+                            android:id="@+id/blocked_nosecb"
+                            android:layout_width="120dp"
+                            android:layout_height="50dp"
+
+                            android:text="Blocked Nose"
+                            android:textStyle="bold" />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="180dp"
+                    android:layout_weight="1"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:id="@+id/grid_item_dashboard_frameLayout_tops2"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/home_ripple_bg"
+                        android:elevation="8dp">
+
+                        <ImageView
+                            android:id="@+id/sneezing"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:longClickable="false"
+                            android:padding="15dp"
+                            android:src="@drawable/sneeze" />
+
+                        <FrameLayout
+                            android:id="@+id/sneezing1"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/circle_shape_dark"
+                            android:visibility="visible" />
+
+                    </FrameLayout>
+
+
+                        <CheckBox
+                            android:id="@+id/sneezingcb"
+                            android:layout_width="120dp"
+                            android:layout_height="50dp"
+                            android:checked="false"
+                            android:text="Sneezing"
+                            android:textStyle="bold"
+                           />
+
+               <!--     <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:text="Sneezing"
+                        android:textColor="#000000"
+                        android:textStyle="bold"
+                        android:textSize="16sp" />-->
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="180dp"
+                    android:layout_weight="1"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/home_ripple_bg"
+                        android:elevation="8dp">
+
+                        <ImageView
+                            android:id="@+id/Itchynose"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:src="@drawable/itchynos"
+                            android:longClickable="false"
+                            android:padding="15dp" />
+
+                        <FrameLayout
+                            android:id="@+id/Itchynose1"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/circle_shape_dark"
+                            android:visibility="visible" />
+
+                    </FrameLayout>
+
+
+                        <CheckBox
+                            android:id="@+id/itchynosecb"
+                            android:layout_width="120dp"
+                            android:layout_height="50dp"
+                            android:checked="false"
+                            android:textStyle="bold"
+
+                            android:text="Itchy nose" />
+
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/grid_item3"
+                android:layout_width="380dp"
+                android:layout_height="180dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:id="@+id/grid_item_dashboard_frameLayout_tops3"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/home_ripple_bg"
+                        android:elevation="8dp">
+
+                        <ImageView
+                            android:id="@+id/runnynose"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:longClickable="false"
+                            android:padding="15dp"
+                            android:src="@drawable/runnynose" />
+
+                        <FrameLayout
+                            android:id="@+id/runnynose1"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/circle_shape_dark"
+                            android:visibility="visible" />
+
+                    </FrameLayout>
+
+
+                        <CheckBox
+                            android:id="@+id/runnynosecb"
+                            android:layout_width="120dp"
+                            android:layout_height="50dp"
+                            android:checked="false"
+                            android:text="Runny Nose"
+                            android:textStyle="bold"
+                           />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:id="@+id/grid_item_dashboard_frameLayout_tops4"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/home_ripple_bg"
+                        android:elevation="8dp">
+
+                        <ImageView
+                            android:id="@+id/wheezing"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:longClickable="false"
+                            android:padding="15dp"
+                            android:src="@drawable/wheeze" />
+
+                        <FrameLayout
+                            android:id="@+id/wheezing1"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/circle_shape_dark"
+                            android:visibility="visible" />
+
+                    </FrameLayout>
+
+
+                        <CheckBox
+                            android:id="@+id/wheezingcb"
+                            android:layout_width="120dp"
+                            android:layout_height="50dp"
+                            android:checked="false"
+                            android:text="wheezing"
+                            android:textStyle="bold"
+                           />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/home_ripple_bg"
+                        android:elevation="8dp">
+
+                        <ImageView
+                            android:id="@+id/chesttight"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:longClickable="false"
+                            android:padding="15dp"
+                            android:src="@drawable/chesttight" />
+
+                        <FrameLayout
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:id="@+id/chesttight1"
+                            android:background="@drawable/circle_shape_dark"
+                            android:visibility="visible" />
+
+                    </FrameLayout>
+
+
+                        <CheckBox
+                            android:id="@+id/chesttightcb"
+                            android:layout_width="120dp"
+                            android:layout_height="50dp"
+                            android:checked="false"
+                            android:text="Chest Tightness"
+                            android:textStyle="bold"
+                            />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/grid_item"
+                android:layout_width="380dp"
+                android:layout_height="180dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:id="@+id/grid_item_dashboard_frameLayout_tops5"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/home_ripple_bg"
+                        android:elevation="8dp">
+
+                        <ImageView
+                            android:id="@+id/shortbreath"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:src="@drawable/shortbreath"
+                            android:longClickable="false"
+                            android:padding="15dp"
+                           />
+
+                        <FrameLayout
+                            android:id="@+id/shortbreath1"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/circle_shape_dark"
+                            android:visibility="visible" />
+
+                    </FrameLayout>
+
+
+                        <CheckBox
+                            android:id="@+id/shortbreathcb"
+                            android:layout_width="120dp"
+                            android:layout_height="50dp"
+                            android:checked="false"
+                            android:text="Shortness of breath"
+                            android:textStyle="bold"
+                            />
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:id="@+id/grid_item_dashboard_frameLayout_tops"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/home_ripple_bg"
+                        android:elevation="8dp">
+
+                        <ImageView
+                            android:id="@+id/wakeup"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:longClickable="false"
+                            android:padding="15dp"
+                            android:src="@drawable/nightwakeup"
+                            />
+
+                        <FrameLayout
+                            android:id="@+id/wakeup1"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/circle_shape_dark"
+                            android:visibility="visible" />
+
+                    </FrameLayout>
+
+                        <CheckBox
+                            android:id="@+id/wakeupcb"
+                            android:layout_width="120dp"
+                            android:layout_height="50dp"
+                            android:checked="false"
+                            android:text="WakeUp at night"
+                            android:textStyle="bold"
+                           />
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/home_ripple_bg"
+                        android:elevation="8dp">
+
+                        <ImageView
+                            android:id="@+id/tiredness"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:longClickable="false"
+                            android:padding="15dp"
+                            android:src="@drawable/tired"
+                            />
+
+                        <FrameLayout
+                            android:id="@+id/tiredness1"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/circle_shape_dark"
+                            android:visibility="visible" />
+
+                    </FrameLayout>
+
+
+
+                        <CheckBox
+                            android:id="@+id/tirednesscb"
+                            android:layout_width="120dp"
+                            android:layout_height="50dp"
+                            android:checked="false"
+                            android:text="Tiredness"
+                            android:textStyle="bold"
+                           />
+
+
+
+
+
+                </LinearLayout>
+            </LinearLayout>
+            <Button
+                android:id="@+id/sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:text="Submit"/>
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/navigation"
+        android:visibility="visible"/>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

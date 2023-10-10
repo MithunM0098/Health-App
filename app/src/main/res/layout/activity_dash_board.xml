@@ -259,7 +259,6 @@
                             android:layout_gravity="center"
                             android:id="@+id/symptom"
                             android:background="@drawable/circle_shape_dark"
-                            android:onClick="symptoms"
                             android:visibility="visible" />
 
                     </FrameLayout>

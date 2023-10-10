@@ -85,6 +85,7 @@ startActivity(vital);
             @Override
             public void onClick(View view) {
                 Intent symp=new Intent(DashBoard.this,symptoms.class);
+                startActivity(symp);
             }
         });
     }
