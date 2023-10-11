@@ -1,5 +1,7 @@
 package com.example.health_app;
 
+import static com.example.health_app.symptoms.checked;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -7,56 +9,65 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.Cursor;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ListView;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 
-public class vitals extends AppCompatActivity {
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
-    TextInputLayout heightlayout,weightlayout,oxygenlayout,bplayout;
-    TextInputEditText height,weight,oxygen,bp;
-    Button submit;
-    MyUserDeatilsDB db;
+public class MySymptoms extends AppCompatActivity {
     private DrawerLayout drawerLayout;
+    private ListView mysymptomslistview;
+    private List<String> symp;
+    private List<String> symps=new LinkedList<>();
+    private Set<String> nodup=new LinkedHashSet<>();
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vitals);
+        setContentView(R.layout.activity_my_symptoms);
         drawerLayout = findViewById(R.id.drawer_layout);
-        db=new MyUserDeatilsDB(getApplicationContext());
-        heightlayout=findViewById(R.id.heightlayout);
-        weightlayout=findViewById(R.id.weightlayout);
-        oxygenlayout=findViewById(R.id.oxygenlayout);
-        bplayout=findViewById(R.id.bplayout);
-
-        height=findViewById(R.id.height);
-        weight=findViewById(R.id.weight);
-        oxygen=findViewById(R.id.oxygen);
-        bp=findViewById(R.id.bp);
-
-        submit=findViewById(R.id.submit);
-        getUserData();
+        mysymptomslistview=findViewById(R.id.mysymptoms);
         setupToolbarAndNavigationDrawer();
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                db.UpdateData2("1",height.getText().toString().trim(),weight.getText().toString().trim(),oxygen.getText().toString().trim(),bp.getText().toString().trim());
-                Intent i=new Intent(vitals.this,DashBoard.class);
-                startActivity(i);
-            }
-        });
 
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String json = sharedPreferences.getString("savedSymptoms", null);
 
+        if (json != null) {
+            symp = new LinkedList<>(new Gson().fromJson(json, new TypeToken<List<String>>() {}.getType()));
+        } else {
+            symp = new LinkedList<>();
+        }
+
+        symp.addAll(checked);
+        nodup.addAll(symp);
+        symps.addAll(nodup);
+
+        // Update the ListView with the symptoms
+        MySymptomsAdapter adapter = new MySymptomsAdapter(getApplicationContext(), symps);
+        mysymptomslistview.setAdapter(adapter);
     }
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        // Save symptoms to SharedPreferences when the activity is stopped
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("savedSymptoms", new Gson().toJson(symps));
+        editor.apply();
+    }
+
     private void setupToolbarAndNavigationDrawer() {
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
 
@@ -79,38 +90,24 @@ public class vitals extends AppCompatActivity {
             }
         });
     }
-    public void getUserData(){
-        Cursor cursor = db.readAllData();
-        if(cursor.getCount() == 0){
-            Toast.makeText(this,"No data to display",Toast.LENGTH_SHORT).show();
-        }else{
-            while (cursor.moveToNext()){
-                height.setText(cursor.getString(8));
-                weight.setText(cursor.getString(9));
-                oxygen.setText(cursor.getString(10));
-                bp.setText(cursor.getString(11));
-
-            }
-        }
-    }
 
     private void handleNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_home:
-                Intent i1 = new Intent(vitals.this, DashBoard.class);
+                Intent i1 = new Intent(MySymptoms.this, DashBoard.class);
                 startActivity(i1);
                 break;
             case R.id.nav_edit:
-                Intent i = new Intent(vitals.this, Edit_profile.class);
+                Intent i = new Intent(MySymptoms.this, Edit_profile.class);
                 startActivity(i);
                 break;
             case R.id.symptoms:
-                Intent i3 = new Intent(vitals.this, MySymptoms.class);
+                Intent i3 = new Intent(MySymptoms.this, MySymptoms.class);
                 startActivity(i3);
                 break;
             case R.id.logout:
-                Intent i2 = new Intent(vitals.this, MainActivity.class);
+                Intent i2 = new Intent(MySymptoms.this, MainActivity.class);
                 startActivity(i2);
                 break;
         }

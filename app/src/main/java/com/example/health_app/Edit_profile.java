@@ -187,7 +187,8 @@ public class Edit_profile extends AppCompatActivity {
                 startActivity(i);
                 break;
             case R.id.symptoms:
-                Toast.makeText(Edit_profile.this, "Symptoms is Clicked", Toast.LENGTH_SHORT).show();
+                Intent i3 = new Intent(Edit_profile.this, MySymptoms.class);
+                startActivity(i3);
                 break;
             case R.id.logout:
                 Intent i2 = new Intent(Edit_profile.this, MainActivity.class);

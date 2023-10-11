@@ -18,12 +18,19 @@ import android.widget.Toast;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
 public class symptoms extends AppCompatActivity {
     CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8, cb9;
     Button submitButton;
     private DrawerLayout drawerLayout;
     private SharedPreferences sharedPreferences;
-
+Set<CheckBox> unchecked=new LinkedHashSet<>();
+static Set<String> checked=new LinkedHashSet<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +49,16 @@ public class symptoms extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
 
         setupToolbarAndNavigationDrawer();
+
+        unchecked.add(cb1);
+        unchecked.add(cb2);
+        unchecked.add(cb3);
+        unchecked.add(cb4);
+        unchecked.add(cb5);
+        unchecked.add(cb6);
+        unchecked.add(cb7);
+        unchecked.add(cb8);
+        unchecked.add(cb9);
 
         // Initialize SharedPreferences
 //        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
@@ -78,13 +95,21 @@ public class symptoms extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Here, you can submit the information or perform any other actions based on the checkbox states.
-                if (cb1.isChecked()) {
-                    // The "Blocked Nose" checkbox is checked
-                    // Add code to handle this case
-                }
+                checked.clear();
+               for (CheckBox check:unchecked){
+                   if (check.isChecked()){
+                       checked.add(check.getText().toString());
+                       System.out.println(check.getText().toString()+"added");
+                   }
 
-                // Repeat for other checkboxes if needed
+               }
+                sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putStringSet("checkedSymptoms", checked);
+                editor.apply();
+
+                Intent i=new Intent(symptoms.this,DashBoard.class);
+                startActivity(i);
             }
         });
     }
@@ -123,7 +148,8 @@ public class symptoms extends AppCompatActivity {
                 startActivity(i);
                 break;
             case R.id.symptoms:
-                Toast.makeText(symptoms.this, "Symptoms is Clicked", Toast.LENGTH_SHORT).show();
+                Intent i3 = new Intent(symptoms.this, MySymptoms.class);
+                startActivity(i3);
                 break;
             case R.id.logout:
                 Intent i2 = new Intent(symptoms.this, MainActivity.class);

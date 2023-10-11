@@ -238,7 +238,8 @@ public class DashBoard extends AppCompatActivity {
                 startActivity(i);
                 break;
             case R.id.symptoms:
-                Toast.makeText(DashBoard.this, "Symptoms is Clicked", Toast.LENGTH_SHORT).show();
+                Intent i3 = new Intent(DashBoard.this, MySymptoms.class);
+                startActivity(i3);
                 break;
             case R.id.logout:
                 Intent i2 = new Intent(DashBoard.this, MainActivity.class);
